@@ -1,0 +1,14 @@
+# Netlify configuration — static site, no build step
+[build]
+  publish = "site"
+
+# Long-cache immutable assets; HTML revalidates so edits show immediately
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
