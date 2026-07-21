@@ -45,6 +45,21 @@
     });
   });
 
+  /* hero slider: click the arrow to step through hero images */
+  document.querySelectorAll("[data-hero-slider]").forEach(function (root) {
+    var slides = root.querySelectorAll(".hero-slider__slide");
+    var btn = root.querySelector(".hero-slider__nav");
+    var label = root.querySelector(".hero-slider__label");
+    if (!slides.length || !btn) return;
+    var i = 0;
+    btn.addEventListener("click", function () {
+      slides[i].classList.remove("is-active");
+      i = (i + 1) % slides.length;
+      slides[i].classList.add("is-active");
+      if (label) label.textContent = slides[i].getAttribute("data-label") || "";
+    });
+  });
+
   /* gentle parallax on elements with [data-parallax] */
   if (!reduced) {
     var pEls = Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
